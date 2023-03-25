@@ -1,0 +1,80 @@
+{% extends 'html/index.html' %}
+
+
+{% block contenus %}
+
+<!-- Main Window -->
+
+<div class="row">
+    <div class="col">
+        <h2>Clients</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>*</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Courriel</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>John</td>
+                <td>Doe</td>
+                <td>johndoe@example.com</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>Jane</td>
+                <td>Doe</td>
+                <td>janedoe@example.com</td>
+            </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-primary">Créer un client</button>
+        <button class="btn btn-primary">Modifier un client sélectionné</button>
+        <button class="btn btn-danger">Supprimer un client sélectionné</button>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col">
+        <h2>Films</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>*</th>
+                <th>Nom</th>
+                <th>Durée</th>
+                <th>Catégorie</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td><a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Morgan Freeman, Tim Robbins"><strong>The Shawshank Redemption</strong></a></td>
+                <td>2h 22min</td>
+                <td>Drame</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td><a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Marlon Brando, Al Pacino"><strong>The Godfather</strong></a></td>
+                <td>2h 55min</td>
+                <td>Crime, Drame</td>
+            </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-primary">Ajouter un film</button>
+        <button class="btn btn-primary">Modifier un film sélectionné</button>
+        <button class="btn btn-danger">Supprimer un film sélectionné</button>
+    </div>
+
+</div>
+
+<div class="row mt-3">
+    <div class="col">
+        <button class="btn btn-danger">Se déconnecter</button>
+    </div>
+</div>
+{% endblock contenus %}

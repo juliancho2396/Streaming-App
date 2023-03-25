@@ -1,0 +1,44 @@
+{% extends 'html/index.html' %}
+
+
+{% block contenus %}
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Créer un compte</h4>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="firstname" class="form-label">Prénom</label>
+                <input type="text" class="form-control" id="firstname" required>
+            </div>
+            <div class="mb-3">
+                <label for="lastname" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="lastname" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Courriel</label>
+                <input type="email" class="form-control" id="email" required>
+                <div class="invalid-feedback">Veuillez entrer un courriel valide.</div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Mot de passe</label>
+                <input type="password" class="form-control" id="password" minlength="8" required>
+                <div class="invalid-feedback">Le mot de passe doit contenir au moins 8 caractères.</div>
+            </div>
+            <div class="mb-3">
+                <label for="confirm-password" class="form-label">Confirmez le mot de passe</label>
+                <input type="password" class="form-control" id="confirm-password" required>
+                <div class="invalid-feedback">Veuillez entrer un mot de passe identique.</div>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Créer le compte</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock contenus %}

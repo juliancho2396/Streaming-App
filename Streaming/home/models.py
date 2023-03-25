@@ -1,4 +1,5 @@
 # from django.db import models
+from django.contrib.auth.hashers import make_password
 
 # Create your models here.
 class personne:
@@ -9,12 +10,27 @@ class personne:
     class Meta:
         abstract = True
 
+# confirme si il y a des numéros, majuscules et minuscules
+def motdepasse_securitaire(motdepasse):
+    if len(motdepasse) < 8:
+        return False
+    if not any(char.isdigit() for char in motdepasse):
+        return False
+    if not any(char.isalpha() for char in motdepasse):
+        return False
+    if not any(char.isupper() for char in motdepasse):
+        return False
+    return True
+
 class client(personne):
     def __init__(self, prenom, nom, sexe, incription, courriel, motdepasse):
         super().__init__(prenom,nom,sexe)
         self.incription = incription
         self.courriel = courriel
-        self.motdepasse = motdepasse
+        if motdepasse_securitaire(motdepasse):
+            self.motdepasse = make_password(motdepasse)
+        else:
+            raise ValueError("Le mot de passe n'est pas assez sécuritaire")
         self.cartes_de_credit = []
 
     def ajouter_carte_de_credit(self, numero, expiration):
@@ -31,7 +47,10 @@ class employe(personne):
         super().__init__(prenom,nom,sexe)
         self.embauche = embauche
         self.utilisateur = utilisateur
-        self.motdepasse = motdepasse
+        if motdepasse_securitaire(motdepasse):
+            self.motdepasse = make_password(motdepasse)
+        else:
+            raise ValueError("Le mot de passe n'est pas assez sécuritaire")
         self.typeacces = typeacces
 
 class acteur(personne):

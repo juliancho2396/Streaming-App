@@ -14,22 +14,20 @@
                 <th>*</th>
                 <th>Nom</th>
                 <th>Prénom</th>
+                <th>Sexe</th>
                 <th>Courriel</th>
             </tr>
             </thead>
             <tbody>
+            {% for client in clients %}
             <tr>
                 <td><input type="checkbox"></td>
-                <td>John</td>
-                <td>Doe</td>
-                <td>johndoe@example.com</td>
+                <td>{{client.nom}}</td>
+                <td>{{client.prenom}}</td>
+                <td>{{client.sexe}}</td>
+                <td>{{client.courriel}}</td>
             </tr>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td>Jane</td>
-                <td>Doe</td>
-                <td>janedoe@example.com</td>
-            </tr>
+            {% endfor %}
             </tbody>
         </table>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createClientModal">Créer un client</button>
@@ -47,22 +45,20 @@
                 <th>*</th>
                 <th>Nom</th>
                 <th>Durée</th>
-                <th>Catégorie</th>
+                <th>Déscription</th>
+                <th>Catégories</th>
             </tr>
             </thead>
             <tbody>
+            {%for film in films%}
             <tr>
                 <td><input type="checkbox"></td>
-                <td><a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Morgan Freeman, Tim Robbins"><strong>The Shawshank Redemption</strong></a></td>
-                <td>2h 22min</td>
-                <td>Drame</td>
+                <td><a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="{%for acteur in film.acteurs %}{{acteur}}. {%endfor%}"><strong>{{film.nom}}</strong></a></td>
+                <td>{{film.duree}} minutes</td>
+                <td>{{film.description}}</td>
+                <td>{%for categorie in film.categories %}{{categorie}}. {%endfor%}</td>
             </tr>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td><a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Marlon Brando, Al Pacino"><strong>The Godfather</strong></a></td>
-                <td>2h 55min</td>
-                <td>Crime, Drame</td>
-            </tr>
+            {%endfor%}
             </tbody>
         </table>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createFilmModal">Ajouter un film</button>

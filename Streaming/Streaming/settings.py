@@ -25,6 +25,7 @@ SECRET_KEY = 'django-insecure-5*&evbt3%_8*_!0d69i7e^3^@1k_w)q63-3jug%s*%qs#nrxdb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Une fois deploye, incluir l'adresse du serveur
 ALLOWED_HOSTS = ['*']
 
 

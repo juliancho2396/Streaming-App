@@ -1,0 +1,52 @@
+{% extends 'html/index.html' %}
+
+
+{% block contenus %}
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Modifier un client</h4>
+    </div>
+    {% if errors %}
+    <div class="alert alert-danger mt-3">
+        <ul>
+            {% for error in errors %}
+            <li>{{error}}</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+    {%endif%}
+    <div class="card-body">
+        <form action="{% url 'home:modifier_client' client.courriel %}" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="prenomclient" class="form-label">Prénom</label>
+                <input type="text" class="form-control" id="prenomclient" name="prenomclient" value="{{client.prenom}}" required>
+            </div>
+            <div class="mb-3">
+                <label for="nomclient" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="nomclient" name="nomclient" value="{{client.nom}}" required>
+            </div>
+            <div class="mb-3">
+
+                <label for="sexe" class="form-label">Sexe</label>
+                <select class="form-control" id="sexe" name="sexe" required>
+                    <option value="F" {% if client.sexe == 'F' %} selected {%endif%}>Femme</option>
+                    <option value="M" {% if client.sexe == 'M' %} selected {%endif%}>Homme</option>
+                    <option value="A" {% if client.sexe == 'A' %} selected {%endif%}>Autre</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Courriel</label>
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="{{client.courriel}}" required>
+            </div>
+            <button class="btn btn-primary">Reinitialiser mot de passe</button>
+
+            <button type="submit" class="btn btn-primary">Sauvegarder</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock contenus %}

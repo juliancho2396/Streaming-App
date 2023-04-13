@@ -15,6 +15,13 @@ class personne:
     def __str__(self) -> str:
         return " ".join([self.prenom, self.nom])
 
+    def mettre_a_jour(self, prenom, nom, sexe):
+        self.prenom = prenom if not self.prenom == prenom else self.prenom
+        self.nom = nom if not self.nom == nom else self.nom
+        if not sexe in ['M', 'F', 'A']:
+            raise ValueError("Le genre d'une personne doit être M, F ou A")
+        self.sexe = sexe if not self.sexe == sexe else self.sexe
+
 # confirme si il y a des numéros, majuscules et minuscules
 def motdepasse_securitaire(motdepasse):
     if len(motdepasse) < 8:
@@ -64,7 +71,17 @@ class client(personne):
         carte = cartedecredit(numero=numero, expiration=expiration)
         self.cartes_de_credit.append(carte)
         return True
-        
+
+    def mettre_a_jour(self, prenom, nom, sexe, courriel):
+        # confirme si tous les champs sont remplis
+        champs_remplis([prenom, nom, sexe, courriel])
+        self.prenom = prenom if not self.prenom == prenom else self.prenom
+        self.nom = nom if not self.nom == nom else self.nom
+        self.sexe = sexe if not self.sexe == sexe else self.sexe
+        if not '@' in courriel or not '.' in courriel or ' ' in courriel:
+            raise ValueError("Introduissez une adresse courriel valide.")
+        self.courriel = courriel if not self.courriel == courriel else self.courriel
+        return self
 
 class employe(personne):
     def __init__(self, prenom, nom, sexe, embauche, utilisateur, motdepasse, typeacces):
